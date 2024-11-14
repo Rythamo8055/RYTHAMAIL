@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RythaMail</title>
+    
+    <!-- Prevent FOUC -->
+    <style>
+        .preload * {
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            -ms-transition: none !important;
+            -o-transition: none !important;
+            transition: none !important;
+        }
+    </style>
+    
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oranienbaum&display=swap" rel="stylesheet">
+    
+    <!-- Your stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <script>
+        // Remove preload class once everything is loaded
+        window.addEventListener('load', () => {
+            document.documentElement.classList.remove('preload');
+        });
+    </script>
+</head>
+<body class="preload">
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>RythaMail</h1>
+            <p class="subtitle">It's Yours</p>
+        </header>
+
+        <!-- Email Generator Card -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Your Temporary Email</h2>
+            </div>
+            <div class="email-input-group">
+                <input type="text" id="emailDisplay" readonly placeholder="Generate an email address...">
+                <div class="button-group">
+                    <button class="btn primary" id="generateEmail">
+                        <span>Generate New Email</span>
+                    </button>
+                    <button class="btn" id="copyBtn">
+                        <span>Copy Email</span>
+                    </button>
+                </div>
+            </div>
+            <div class="expiration-indicator" id="expirationIndicator"></div>
+        </div>
+
+        <!-- Messages Card -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Inbox</h2>
+                <button class="btn" id="checkMailBtn">
+                    <span>Check Mail</span>
+                </button>
+            </div>
+            <div class="messages-list" id="messagesList">
+                <div class="no-messages">No messages yet</div>
+            </div>
+        </div>
+
+        <!-- Email History Card -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Email History</h2>
+                <div class="history-actions">
+                    <button class="btn danger" id="clearAllBtn">
+                        <span>Clear History</span>
+                    </button>
+                </div>
+            </div>
+            <div id="emailHistory" class="history-table">
+                <!-- Email history will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Duration Selection Modal -->
+    <div class="expiration-dialog" id="expirationDialog">
+        <div class="dialog-content">
+            <div class="modal-header">
+                <h2>Select Email Duration</h2>
+                <button class="close-btn" id="closeDialog">&times;</button>
+            </div>
+            <div class="expiration-options">
+                <button class="option" data-duration="1hour">1 Hour</button>
+                <button class="option" data-duration="1day">1 Day</button>
+                <button class="option" data-duration="1week">1 Week</button>
+                <button class="option" data-duration="2weeks">2 Weeks</button>
+                <button class="option" data-duration="custom">Custom</button>
+            </div>
+            
+            <div class="custom-time-input" id="customTimeInput">
+                <div class="custom-input-group">
+                    <input type="number" id="customValue" min="1" placeholder="Enter value">
+                    <select id="customUnit">
+                        <option value="hours">Hours</option>
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Months</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="dialog-buttons">
+                <button class="btn primary" id="confirmDuration">Generate Email</button>
+                <button class="btn" id="cancelDuration">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Content Modal -->
+    <div class="email-modal" id="emailModal">
+        <div class="email-modal-content">
+            <div class="email-modal-header">
+                <h2>Email Content</h2>
+                <button class="close-btn" id="closeEmailModal">&times;</button>
+            </div>
+            <div class="email-modal-body">
+                <div class="email-metadata" id="emailMetadata"></div>
+                <div class="email-content" id="emailContent"></div>
+                <div class="email-attachments" id="emailAttachments"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" style="display: none;"></div>
+
+    <script src="app.js"></script>
+</body>
+</html> 

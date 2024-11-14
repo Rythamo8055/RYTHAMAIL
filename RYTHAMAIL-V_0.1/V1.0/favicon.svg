@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple Mail Icon -->
+  <path fill-rule="evenodd" 
+        clip-rule="evenodd" 
+        d="M6 8C4.89543 8 4 8.89543 4 10V22C4 23.1046 4.89543 24 6 24H26C27.1046 24 28 23.1046 28 22V10C28 8.89543 27.1046 8 26 8H6ZM26 11.8685V22H6V11.8685L15.2929 17.3685C15.6834 17.6159 16.3166 17.6159 16.7071 17.3685L26 11.8685ZM24.9037 10L16 15.2981L7.09625 10H24.9037Z" 
+        fill="black"/>
+</svg> 
